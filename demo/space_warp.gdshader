@@ -4,15 +4,22 @@ render_mode world_vertex_coords, cull_disabled;
 uniform float strength = 0.0;
 uniform vec4 base_color : source_color = vec4(0.5);
 uniform bool floor_tiles = false;
+uniform bool anchored = false;
+uniform vec3 anchor = vec3(0.0);
 varying vec3 source_position;
 
 vec3 warp(vec3 p) {
+	vec3 compression = vec3(1.0 - 0.38 * strength, 1.0 - 0.20 * strength, 1.0 - 0.38 * strength);
+	if (anchored) {
+		p = anchor + (p - anchor) / compression;
+	}
+	float bend = strength * 0.65;
 	float depth = clamp((5.0 - p.z) / 10.0, 0.0, 1.0);
 	return vec3(
-		p.x * (1.0 - strength * 0.20 * depth) + strength * (0.40 * p.y * (0.25 + 0.75 * depth) + 0.18 * p.z * depth),
-		p.y * (1.0 - strength * 0.14 * depth) + strength * (-0.20 * p.x * depth + 0.032 * p.x * p.x * depth + 0.20 * depth * (1.0 - depth)),
-		p.z + strength * (0.15 * p.x * depth + 0.025 * p.x * p.y + 0.24 * p.y * depth)
-	);
+		p.x * (1.0 - bend * 0.20 * depth) + bend * (0.40 * p.y * (0.25 + 0.75 * depth) + 0.18 * p.z * depth),
+		p.y * (1.0 - bend * 0.14 * depth) + bend * (-0.20 * p.x * depth + 0.032 * p.x * p.x * depth + 0.20 * depth * (1.0 - depth)),
+		p.z + bend * (0.15 * p.x * depth + 0.025 * p.x * p.y + 0.24 * p.y * depth)
+	) * compression;
 }
 
 void vertex() {

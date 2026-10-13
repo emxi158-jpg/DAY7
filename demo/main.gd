@@ -36,11 +36,24 @@ var preview_stage := -1
 const WARP_SHADER = preload("res://space_warp.gdshader")
 const Warp = preload("res://space_warp.gd")
 
-func warp_material(color: Color, floor_pattern := false) -> ShaderMaterial:
+func attachment_anchor(node: Node3D) -> Variant:
+	var current: Node = node
+	while current != null:
+		if current.has_meta("warp_anchor"):
+			return current.get_meta("warp_anchor")
+		current = current.get_parent()
+	return null
+
+func warp_material(color: Color, floor_pattern := false, attachment: Node3D = null) -> ShaderMaterial:
 	var mat := ShaderMaterial.new()
 	mat.shader = WARP_SHADER
 	mat.set_shader_parameter("base_color", color)
 	mat.set_shader_parameter("floor_tiles", floor_pattern)
+	if attachment != null:
+		var anchor: Variant = attachment_anchor(attachment)
+		if anchor != null:
+			mat.set_shader_parameter("anchored", true)
+			mat.set_shader_parameter("anchor", anchor)
 	warp_materials.append(mat)
 	return mat
 
@@ -68,16 +81,19 @@ func make_shell() -> void:
 
 func remember_attachments(node: Node) -> void:
 	if node is Label3D:
-		attached_labels.append({"node": node, "base": node.global_transform})
+		attached_labels.append({"node": node, "base": node.global_transform, "anchor": attachment_anchor(node)})
 	if node is Light3D:
 		attached_lights.append({"node": node, "base": node.global_position})
 	for child in node.get_children():
 		remember_attachments(child)
 
 func update_camera_position() -> void:
-	camera.global_position = Warp.point(player.position + Vector3(0, 1.65, 0), warp_strength)
+	camera.global_position = Warp.point(player.position, warp_strength) + Vector3.UP * 1.65
 
 func target_position(node: Node3D) -> Vector3:
+	var anchor: Variant = attachment_anchor(node)
+	if anchor != null:
+		return Warp.attached_point(node.global_position, warp_strength, anchor)
 	return Warp.point(node.global_position, warp_strength)
 
 func block(parent: Node3D, pos: Vector3, size: Vector3, color: Color) -> MeshInstance3D:
@@ -88,7 +104,7 @@ func block(parent: Node3D, pos: Vector3, size: Vector3, color: Color) -> MeshIns
 	box.subdivide_height = maxi(1, int(ceil(size.y / 0.25)))
 	box.subdivide_depth = maxi(1, int(ceil(size.z / 0.25)))
 	mesh.mesh = box
-	mesh.material_override = warp_material(color)
+	mesh.material_override = warp_material(color, false, parent)
 	mesh.extra_cull_margin = 4.0
 	parent.add_child(mesh)
 	mesh.position = pos
@@ -116,6 +132,10 @@ func target(parent: Node3D, pos: Vector3, kind: String, radius: float) -> Node3D
 	node.position = pos
 	node.set_meta("kind", kind)
 	node.set_meta("radius", radius)
+	var anchor := node.global_position
+	if kind != "clock":
+		anchor.y = 0.0
+	node.set_meta("warp_anchor", anchor)
 	interactables.append(node)
 	return node
 
@@ -144,7 +164,7 @@ func _ready() -> void:
 	face.mesh = disc
 	face.rotation.x = PI / 2
 	disc.rings = 8
-	face.material_override = warp_material(Color("d8cba6"))
+	face.material_override = warp_material(Color("d8cba6"), false, clock)
 	face.extra_cull_margin = 4.0
 	clock.add_child(face)
 	for n in range(1, 13):
@@ -171,15 +191,19 @@ func _ready() -> void:
 	exit_root.add_child(door)
 	block(door, Vector3.ZERO, Vector3(1.45, 2.6, 0.25), Color("334448"))
 	block(door, Vector3(0.35, 0.45, 0.15), Vector3(0.25, 0.95, 0.025), Color("94b2b0"))
-	label3(exit_root, Vector3(0, 1.7, 0.15), "EXIT / 7", 48).modulate = Color("76ffca")
+	label3(exit_root, Vector3(0, 1.1, 0.18), "EXIT / 7", 48).modulate = Color("76ffca")
 	timer_label = label3(exit_root, Vector3(0, -0.55, 0.18), "", 28)
-	# Sparse waiting-room furniture: preserve clear paths around the center.
-	block(self, Vector3(-3, 0.45, -3.5), Vector3(2.5, 0.6, 1), Color("3f3028"))
-	block(self, Vector3(-3, 0.9, -3.95), Vector3(2.5, 0.8, 0.2), Color("4c392e"))
-	block(self, Vector3(-2.7, 0.65, -1.8), Vector3(1.9, 0.12, 0.9), Color("6d5439"))
-	for x in [-3.4, -2.0]:
-		for z in [-2.1, -1.5]:
-			block(self, Vector3(x, 0.3, z), Vector3(0.08, 0.6, 0.08), Color("302c29"))
+	# Props follow floor anchors but retain size as the room closes around them.
+	var sofa := region(Vector3(-3, 0, -3.5))
+	sofa.set_meta("warp_anchor", sofa.global_position)
+	block(sofa, Vector3(0, 0.45, 0), Vector3(2.5, 0.6, 1), Color("3f3028"))
+	block(sofa, Vector3(0, 0.9, -0.45), Vector3(2.5, 0.8, 0.2), Color("4c392e"))
+	var table := region(Vector3(-2.7, 0, -1.8))
+	table.set_meta("warp_anchor", table.global_position)
+	block(table, Vector3(0, 0.65, 0), Vector3(1.9, 0.12, 0.9), Color("6d5439"))
+	for x in [-0.7, 0.7]:
+		for z in [-0.3, 0.3]:
+			block(table, Vector3(x, 0.3, z), Vector3(0.08, 0.6, 0.08), Color("302c29"))
 	block(back_wall, Vector3(-3.4, 2.3, 0.25), Vector3(1.3, 1, 0.1), Color("715538"))
 	label3(back_wall, Vector3(-3.4, 2.3, 0.32), "等待须知\n请在十分钟内离开\n出口要求：7", 25)
 	for pos in [Vector3(-1.5, 3.2, -3.6), Vector3(1, 3.2, 0)]:
@@ -273,8 +297,9 @@ func _process(delta: float) -> void:
 		return
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		var axis := Vector3(float(Input.is_physical_key_pressed(KEY_D)) - float(Input.is_physical_key_pressed(KEY_A)), 0, float(Input.is_physical_key_pressed(KEY_S)) - float(Input.is_physical_key_pressed(KEY_W)))
-		var next := player.position + player.basis * axis.normalized() * delta * 3.0
-		# Visual folds have stable navigation boundaries for this prototype.
+		var world_step := player.basis * axis.normalized() * delta * 3.0
+		var next := Warp.floor_position(Warp.point(player.position, warp_strength) + world_step, warp_strength)
+		# Canonical limits contract in physical space with the actual room.
 		next.x = clampf(next.x, -4.1, 4.1)
 		next.z = clampf(next.z, -4.0, 4.2)
 		if not (next.x < -1.6 and next.z < -1.1):
@@ -291,6 +316,8 @@ func _process(delta: float) -> void:
 		var names := {"clock": "挂钟 · E 转动", "cabinet": "储物柜 · E 调节", "door": "出口 · E 进入"}
 		prompt = names[str(focused.get_meta("kind"))]
 	hud.text = "LOOP %d   /   操作错位\nWASD 移动 · 鼠标观察 · E 操作 · Esc 释放鼠标\nF 加速折叠（%s） · R 重试\n1–4 定格观察空间阶段\n\n%s" % [loop_number, "60倍" if fast else "正常", prompt]
+	if preview_stage >= 0:
+		hud.text += "\n定格观察 · 按 F 恢复计时"
 	if elapsed >= LIMIT:
 		finish(false)
 
@@ -322,14 +349,24 @@ func interact(kind: String) -> void:
 			if unlocked:
 				finish(true)
 
-func update_fold() -> void:
+func update_fold(preserve_position := true) -> void:
+	var previous_foot := Warp.point(player.position, warp_strength)
 	warp_strength = pow(elapsed / LIMIT, 1.25)
+	if preserve_position:
+		player.position = Warp.floor_position(previous_foot, warp_strength)
+		player.position.x = clampf(player.position.x, -4.1, 4.1)
+		player.position.z = clampf(player.position.z, -4.0, 4.2)
 	for mat in warp_materials:
 		mat.set_shader_parameter("strength", warp_strength)
 	for item in attached_labels:
 		var original: Transform3D = item["base"]
-		var warped_basis := Warp.jacobian(original.origin, warp_strength) * original.basis
-		item["node"].global_transform = Transform3D(warped_basis, Warp.point(original.origin, warp_strength))
+		var anchor: Variant = item["anchor"]
+		var point := Warp.point(original.origin, warp_strength)
+		var basis := Warp.jacobian(original.origin, warp_strength)
+		if anchor != null:
+			point = Warp.attached_point(original.origin, warp_strength, anchor)
+			basis = Warp.attached_basis(original.origin, warp_strength, anchor)
+		item["node"].global_transform = Transform3D(basis * original.basis, point)
 	for item in attached_lights:
 		item["node"].global_position = Warp.point(item["base"], warp_strength)
 
@@ -348,7 +385,7 @@ func reset_room() -> void:
 	fast = false
 	preview_stage = -1
 	focused = null
-	update_fold()
+	update_fold(false)
 	update_camera_position()
 
 func finish(success: bool) -> void:
@@ -409,7 +446,7 @@ func smoke_test() -> void:
 	if loop_number != 1 or transitioning or elapsed > 2:
 		get_tree().quit(4)
 		return
-	print("PASS: continuous shell, positive warp Jacobian, deformed aiming, remote operations, CLEAR/RESET Loop 2, timeout/RESET Loop 1")
+	print("PASS: contracting footprint/ceiling, fixed eye height, navigation inverse, closed shell, deformed aiming, operations and resets")
 	get_tree().quit(0)
 
 func _exit_tree() -> void:
@@ -443,9 +480,29 @@ func check_warp() -> bool:
 		for x in range(-5, 6):
 			for z in range(-5, 6):
 				for y in [0.0, 1.65, 3.8]:
-					if Warp.jacobian(Vector3(x, y, z), strength).determinant() < 0.35:
+					if Warp.jacobian(Vector3(x, y, z), strength).determinant() < 0.20:
 						push_error("Warp inverted or collapsed")
 						return false
+	# Verify measurable contraction, fixed eye height, and world movement mapping.
+	var area := Warp.footprint(1.0)
+	if area >= 42.0 or area <= 25.0:
+		push_error("Floor footprint did not contract as intended")
+		return false
+	var height := Warp.point(Vector3(0, 3.8, 0), 1.0).y - Warp.point(Vector3.ZERO, 1.0).y
+	if height >= 3.0 or height <= 2.2:
+		push_error("Ceiling did not descend safely")
+		return false
+	for strength in [0.0, 0.4, 0.8, 1.0]:
+		var foot := Warp.point(Vector3(1.0, 0, 2.0), strength)
+		var inverse := Warp.floor_position(foot, strength)
+		if inverse.distance_to(Vector3(1.0, 0, 2.0)) > 0.001:
+			push_error("World navigation inverse failed")
+			return false
+	update_camera_position()
+	if absf(camera.global_position.y - Warp.point(player.position, warp_strength).y - 1.65) > 0.001:
+		push_error("Player height was scaled with the room")
+		return false
+	print("CONTRACTION: footprint 100 -> %.2f m2; central height 3.8 -> %.2f m; eye height 1.65 m" % [area, height])
 	# Validate actual aim selection at severe deformation, using canonical walk positions.
 	for node in interactables:
 		player.position = node.global_position + Vector3(0, -1.65, 2.0)
