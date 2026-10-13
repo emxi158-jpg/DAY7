@@ -28,16 +28,68 @@ var tick_playback: AudioStreamGeneratorPlayback
 var tick_phase := 0.0
 var tick_remaining := 0
 var tick_index := -1
+var warp_strength := 0.0
+var warp_materials: Array[ShaderMaterial] = []
+var attached_labels: Array[Dictionary] = []
+var attached_lights: Array[Dictionary] = []
+var preview_stage := -1
+const WARP_SHADER = preload("res://space_warp.gdshader")
+const Warp = preload("res://space_warp.gd")
+
+func warp_material(color: Color, floor_pattern := false) -> ShaderMaterial:
+	var mat := ShaderMaterial.new()
+	mat.shader = WARP_SHADER
+	mat.set_shader_parameter("base_color", color)
+	mat.set_shader_parameter("floor_tiles", floor_pattern)
+	warp_materials.append(mat)
+	return mat
+
+func make_shell() -> void:
+	var surfaces := [
+		[Vector3(-5, 0, -5), Vector3(10, 0, 0), Vector3(0, 0, 10), Vector3.UP, Color("454039"), true],
+		[Vector3(-5, 3.8, -5), Vector3(10, 0, 0), Vector3(0, 0, 10), Vector3.DOWN, Color("393b35"), false],
+		[Vector3(-5, 0, -5), Vector3(10, 0, 0), Vector3(0, 3.8, 0), Vector3.BACK, Color("625f52"), false],
+		[Vector3(-5, 0, 5), Vector3(10, 0, 0), Vector3(0, 3.8, 0), Vector3.FORWARD, Color("4a504d"), false],
+		[Vector3(-5, 0, -5), Vector3(0, 0, 10), Vector3(0, 3.8, 0), Vector3.RIGHT, Color("4a504d"), false],
+		[Vector3(5, 0, -5), Vector3(0, 0, 10), Vector3(0, 3.8, 0), Vector3.LEFT, Color("4a504d"), false]
+	]
+	for surface in surfaces:
+		var mesh := MeshInstance3D.new()
+		mesh.mesh = Warp.shell_face(surface[0], surface[1], surface[2], surface[3])
+		mesh.material_override = warp_material(surface[4], surface[5])
+		mesh.extra_cull_margin = 4.0
+		add_child(mesh)
+	# Continuous cornice / skirting give the eye readable warped boundaries.
+	for y in [0.10, 3.64]:
+		block(self, Vector3(0, y, -4.96), Vector3(10, 0.09, 0.08), Color("272c28"))
+		block(self, Vector3(0, y, 4.96), Vector3(10, 0.09, 0.08), Color("272c28"))
+		block(self, Vector3(-4.96, y, 0), Vector3(0.08, 0.09, 10), Color("272c28"))
+		block(self, Vector3(4.96, y, 0), Vector3(0.08, 0.09, 10), Color("272c28"))
+
+func remember_attachments(node: Node) -> void:
+	if node is Label3D:
+		attached_labels.append({"node": node, "base": node.global_transform})
+	if node is Light3D:
+		attached_lights.append({"node": node, "base": node.global_position})
+	for child in node.get_children():
+		remember_attachments(child)
+
+func update_camera_position() -> void:
+	camera.global_position = Warp.point(player.position + Vector3(0, 1.65, 0), warp_strength)
+
+func target_position(node: Node3D) -> Vector3:
+	return Warp.point(node.global_position, warp_strength)
 
 func block(parent: Node3D, pos: Vector3, size: Vector3, color: Color) -> MeshInstance3D:
 	var mesh := MeshInstance3D.new()
 	var box := BoxMesh.new()
 	box.size = size
+	box.subdivide_width = maxi(1, int(ceil(size.x / 0.25)))
+	box.subdivide_height = maxi(1, int(ceil(size.y / 0.25)))
+	box.subdivide_depth = maxi(1, int(ceil(size.z / 0.25)))
 	mesh.mesh = box
-	var mat := StandardMaterial3D.new()
-	mat.albedo_color = color
-	mat.roughness = 0.85
-	mesh.material_override = mat
+	mesh.material_override = warp_material(color)
+	mesh.extra_cull_margin = 4.0
 	parent.add_child(mesh)
 	mesh.position = pos
 	return mesh
@@ -77,20 +129,11 @@ func _ready() -> void:
 	settings.ambient_light_energy = 0.32
 	env.environment = settings
 	add_child(env)
-	block(self, Vector3(0, -0.15, 0), Vector3(10, 0.3, 10), Color("333639"))
-	for x in range(-5, 6):
-		block(self, Vector3(x, 0.005, 0), Vector3(0.018, 0.01, 10), Color("161a1c"))
-	for z in range(-5, 6):
-		block(self, Vector3(0, 0.005, z), Vector3(10, 0.01, 0.018), Color("161a1c"))
+	make_shell()
 	back_wall = region(Vector3(0, 0, -5))
 	left_wall = region(Vector3(-5, 0, 0))
 	right_wall = region(Vector3(5, 0, 0))
 	ceiling = region(Vector3(0, 3.8, 0))
-	block(back_wall, Vector3(0, 1.9, 0), Vector3(10.6, 3.8, 0.4), Color("625f52"))
-	block(left_wall, Vector3(0, 1.9, 0), Vector3(0.4, 3.8, 10.6), Color("4a504d"))
-	block(right_wall, Vector3(0, 1.9, 0), Vector3(0.4, 3.8, 10.6), Color("4a504d"))
-	block(ceiling, Vector3.ZERO, Vector3(10.6, 0.3, 10.6), Color("373c39"))
-	block(self, Vector3(0, 1.9, 5), Vector3(10.6, 3.8, 0.4), Color("4a504d"))
 	# Clock and cabinet share the rear wall so remote changes remain visible.
 	var clock := target(back_wall, Vector3(-1.5, 2.65, 0.3), "clock", 0.7)
 	var face := MeshInstance3D.new()
@@ -100,9 +143,9 @@ func _ready() -> void:
 	disc.height = 0.09
 	face.mesh = disc
 	face.rotation.x = PI / 2
-	var face_mat := StandardMaterial3D.new()
-	face_mat.albedo_color = Color("d8cba6")
-	face.material_override = face_mat
+	disc.rings = 8
+	face.material_override = warp_material(Color("d8cba6"))
+	face.extra_cull_margin = 4.0
 	clock.add_child(face)
 	for n in range(1, 13):
 		var a := n * TAU / 12.0
@@ -139,7 +182,7 @@ func _ready() -> void:
 			block(self, Vector3(x, 0.3, z), Vector3(0.08, 0.6, 0.08), Color("302c29"))
 	block(back_wall, Vector3(-3.4, 2.3, 0.25), Vector3(1.3, 1, 0.1), Color("715538"))
 	label3(back_wall, Vector3(-3.4, 2.3, 0.32), "等待须知\n请在十分钟内离开\n出口要求：7", 25)
-	for pos in [Vector3(-1.5, 3.1, -3.6), Vector3(1, 3.1, 0)]:
+	for pos in [Vector3(-1.5, 3.2, -3.6), Vector3(1, 3.2, 0)]:
 		var light := OmniLight3D.new()
 		add_child(light)
 		light.position = pos
@@ -152,7 +195,7 @@ func _ready() -> void:
 	camera = Camera3D.new()
 	player.add_child(camera)
 	camera.position.y = 1.65
-	camera.fov = 75
+	camera.fov = 65
 	var canvas := CanvasLayer.new()
 	add_child(canvas)
 	hud = Label.new()
@@ -176,12 +219,16 @@ func _ready() -> void:
 	sound.stream = stream
 	sound.volume_db = -18
 	add_child(sound)
-	sound.play()
-	tick_playback = sound.get_stream_playback()
+	if DisplayServer.get_name() != "headless" and "--capture-stages" not in OS.get_cmdline_user_args():
+		sound.play()
+		tick_playback = sound.get_stream_playback()
+	remember_attachments(self)
 	reset_room()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if "--smoke-test" in OS.get_cmdline_user_args():
 		call_deferred("smoke_test")
+	if "--capture-stages" in OS.get_cmdline_user_args():
+		call_deferred("capture_stages")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and not transitioning:
@@ -193,7 +240,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.keycode:
 			KEY_ESCAPE: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			KEY_F: fast = not fast
+			KEY_F:
+				preview_stage = -1
+				fast = not fast
+			KEY_1, KEY_2, KEY_3, KEY_4:
+				preview_stage = event.keycode - KEY_1
+				elapsed = [0.0, 200.0, 400.0, 570.0][preview_stage]
+				update_fold()
 			KEY_R:
 				if not transitioning:
 					loop_number = 1
@@ -226,8 +279,10 @@ func _process(delta: float) -> void:
 		next.z = clampf(next.z, -4.0, 4.2)
 		if not (next.x < -1.6 and next.z < -1.1):
 			player.position = next
-	elapsed = minf(elapsed + delta * (60.0 if fast else 1.0), LIMIT)
+	if preview_stage < 0:
+		elapsed = minf(elapsed + delta * (60.0 if fast else 1.0), LIMIT)
 	update_fold()
+	update_camera_position()
 	focused = pick_target()
 	var remaining := int(ceil(LIMIT - elapsed))
 	timer_label.text = "剩余 %02d:%02d\n%s" % [remaining / 60, remaining % 60, "已解锁 · E 穿过出口" if unlocked else "LOCKED"]
@@ -235,7 +290,7 @@ func _process(delta: float) -> void:
 	if focused != null:
 		var names := {"clock": "挂钟 · E 转动", "cabinet": "储物柜 · E 调节", "door": "出口 · E 进入"}
 		prompt = names[str(focused.get_meta("kind"))]
-	hud.text = "LOOP %d   /   操作错位\nWASD 移动 · 鼠标观察 · E 操作 · Esc 释放鼠标\nF 加速折叠（%s） · R 重试\n\n%s" % [loop_number, "60倍" if fast else "正常", prompt]
+	hud.text = "LOOP %d   /   操作错位\nWASD 移动 · 鼠标观察 · E 操作 · Esc 释放鼠标\nF 加速折叠（%s） · R 重试\n1–4 定格观察空间阶段\n\n%s" % [loop_number, "60倍" if fast else "正常", prompt]
 	if elapsed >= LIMIT:
 		finish(false)
 
@@ -244,7 +299,7 @@ func pick_target() -> Node3D:
 	var best_alignment := 0.96
 	var forward := -camera.global_basis.z
 	for node in interactables:
-		var offset := node.global_position - camera.global_position
+		var offset := target_position(node) - camera.global_position
 		if offset.length() > 3.5:
 			continue
 		var alignment := forward.dot(offset.normalized())
@@ -268,16 +323,15 @@ func interact(kind: String) -> void:
 				finish(true)
 
 func update_fold() -> void:
-	var t := pow(elapsed / LIMIT, 1.5)
-	back_wall.rotation.z = t * 0.21
-	back_wall.rotation.x = t * -0.13
-	left_wall.rotation.z = t * -0.29
-	left_wall.rotation.y = t * 0.10
-	right_wall.rotation.z = t * 0.26
-	right_wall.rotation.y = t * -0.14
-	ceiling.position.y = 3.8 - t * 0.65
-	ceiling.rotation.z = t * -0.15
-	ceiling.rotation.x = t * 0.09
+	warp_strength = pow(elapsed / LIMIT, 1.25)
+	for mat in warp_materials:
+		mat.set_shader_parameter("strength", warp_strength)
+	for item in attached_labels:
+		var original: Transform3D = item["base"]
+		var warped_basis := Warp.jacobian(original.origin, warp_strength) * original.basis
+		item["node"].global_transform = Transform3D(warped_basis, Warp.point(original.origin, warp_strength))
+	for item in attached_lights:
+		item["node"].global_position = Warp.point(item["base"], warp_strength)
 
 func reset_room() -> void:
 	elapsed = 0.0
@@ -292,8 +346,10 @@ func reset_room() -> void:
 	pitch = 0.0
 	camera.rotation = Vector3.ZERO
 	fast = false
+	preview_stage = -1
 	focused = null
 	update_fold()
+	update_camera_position()
 
 func finish(success: bool) -> void:
 	transitioning = true
@@ -317,7 +373,8 @@ func smoke_test() -> void:
 		player.position = node.global_position + Vector3(0, -1.65, 2.0)
 		if str(node.get_meta("kind")) == "door":
 			player.position = node.global_position + Vector3(-2.0, -1.65, 0)
-		camera.look_at(node.global_position)
+		update_camera_position()
+		camera.look_at(target_position(node))
 		if pick_target() != node:
 			push_error("Unreachable interaction target: " + str(node.get_meta("kind")))
 			get_tree().quit(5)
@@ -325,7 +382,7 @@ func smoke_test() -> void:
 	reset_room()
 	elapsed = 500.0
 	update_fold()
-	if absf(left_wall.rotation.z) < 0.1 or ceiling.position.y >= 3.5:
+	if not check_warp():
 		get_tree().quit(6)
 		return
 	reset_room()
@@ -352,10 +409,73 @@ func smoke_test() -> void:
 	if loop_number != 1 or transitioning or elapsed > 2:
 		get_tree().quit(4)
 		return
-	print("PASS: remote operations, unlock, CLEAR/RESET Loop 2, timeout/RESET Loop 1")
+	print("PASS: continuous shell, positive warp Jacobian, deformed aiming, remote operations, CLEAR/RESET Loop 2, timeout/RESET Loop 1")
 	get_tree().quit(0)
 
 func _exit_tree() -> void:
 	if sound != null:
 		sound.stop()
 	tick_playback = null
+
+func check_warp() -> bool:
+	# Every shell edge has matching samples; shared mapping must keep them closed.
+	var edges := {}
+	var shell_count := 0
+	for child in get_children():
+		if child is MeshInstance3D and child.mesh is ArrayMesh:
+			shell_count += 1
+			var points: PackedVector3Array = child.mesh.surface_get_arrays(0)[Mesh.ARRAY_VERTEX]
+			for i in range(points.size()):
+				var row := i / 33
+				var col := i % 33
+				if row == 0 or row == 32 or col == 0 or col == 32:
+					var p := points[i]
+					var key := Vector3i(roundi(p.x * 1000), roundi(p.y * 1000), roundi(p.z * 1000))
+					edges[key] = int(edges.get(key, 0)) + 1
+	if shell_count != 6:
+		push_error("Missing shell surface")
+		return false
+	for count in edges.values():
+		if count < 2:
+			push_error("Unmatched shell boundary")
+			return false
+	for strength in [0.0, 0.3, 0.7, 1.0]:
+		for x in range(-5, 6):
+			for z in range(-5, 6):
+				for y in [0.0, 1.65, 3.8]:
+					if Warp.jacobian(Vector3(x, y, z), strength).determinant() < 0.35:
+						push_error("Warp inverted or collapsed")
+						return false
+	# Validate actual aim selection at severe deformation, using canonical walk positions.
+	for node in interactables:
+		player.position = node.global_position + Vector3(0, -1.65, 2.0)
+		if str(node.get_meta("kind")) == "door":
+			player.position = node.global_position + Vector3(-2.0, -1.65, 0)
+		update_camera_position()
+		camera.look_at(target_position(node))
+		if pick_target() != node:
+			push_error("Warped target cannot be aimed at")
+			return false
+	return true
+
+func capture_stages() -> void:
+	var capture_dir := OS.get_environment("ROOM_CAPTURE_DIR")
+	if capture_dir.is_empty():
+		capture_dir = ProjectSettings.globalize_path("user://previews")
+	DirAccess.make_dir_recursive_absolute(capture_dir)
+	for stage in range(4):
+		preview_stage = stage
+		elapsed = [0.0, 200.0, 400.0, 570.0][stage]
+		player.rotation.y = -0.16
+		camera.rotation.x = -0.06
+		update_fold()
+		update_camera_position()
+		await get_tree().create_timer(0.5).timeout
+		await RenderingServer.frame_post_draw
+		var result := get_viewport().get_texture().get_image().save_png(capture_dir.path_join("room-stage-%d.png" % stage))
+		if result != OK:
+			push_error("Screenshot could not be saved")
+			get_tree().quit(7)
+			return
+	print("CAPTURED: four rendered stages")
+	get_tree().quit()
