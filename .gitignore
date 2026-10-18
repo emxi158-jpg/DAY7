@@ -1,0 +1,14 @@
+# Only the current Godot project and its documentation belong in this repository.
+# Earlier local Blender projects and investigation outputs stay outside version control.
+/*
+!/.gitignore
+!/README.md
+!/docs/
+!/godot/
+
+# Godot generated editor/import caches
+godot/.godot/
+godot/*.log
+godot/bake_request.flag
+godot/publish_blobs.json
+godot/delivery_files.json

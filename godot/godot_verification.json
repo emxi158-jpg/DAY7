@@ -1,0 +1,13 @@
+{
+  "clock_independent_hands": true,
+  "godot_water_and_broken_state": true,
+  "handle_detaches_and_can_be_held": true,
+  "independent_repeated_rooms": 7,
+  "locker_opens": true,
+  "mirror_passable_in_loop2": true,
+  "player_capsule_actually_walked_through_locker": true,
+  "player_walked_through_exit_into_repeated_rooms": true,
+  "pointer_selects_gateway": true,
+  "same_clock_scaled": true,
+  "single_note_three_texts": true
+}

@@ -1,0 +1,72 @@
+{
+  "clock": {
+    "root": "Clock_Assembly",
+    "position_godot": [
+      0.38999998569488525,
+      2.119999885559082,
+      -2.75
+    ],
+    "yaw_godot": 0.0,
+    "collection": "03_交互挂钟_Clock"
+  },
+  "locker": {
+    "root": "Locker_Assembly",
+    "position_godot": [
+      1.3700000047683716,
+      0.00800000037997961,
+      -1.8300000429153442
+    ],
+    "yaw_godot": 0.0,
+    "collection": "04_可进入储物柜_Locker"
+  },
+  "sink": {
+    "root": "Sink_Assembly",
+    "position_godot": [
+      3.799999952316284,
+      0.0,
+      -0.9100000262260437
+    ],
+    "yaw_godot": -1.5707963705062866,
+    "collection": "05.01_洗手池本体"
+  },
+  "exit": {
+    "root": "ExitDoor_Assembly",
+    "position_godot": [
+      3.8299999237060547,
+      0.0,
+      1.2000000476837158
+    ],
+    "yaw_godot": -1.5707963705062866,
+    "collection": "08.02_可开合出口门"
+  },
+  "pointer": {
+    "root": "Pointer_Assembly",
+    "position_godot": [
+      3.799999952316284,
+      0.0,
+      1.9900000095367432
+    ],
+    "yaw_godot": -1.5707963705062866,
+    "collection": "09_可旋转指针装置"
+  },
+  "board": {
+    "root": "BulletinBoard_Assembly",
+    "position_godot": [
+      -1.0299999713897705,
+      1.9600000381469727,
+      -2.765000104904175
+    ],
+    "yaw_godot": 0.0,
+    "collection": "07_公告板_六公告一便签"
+  },
+  "module": {
+    "root": "SpaceModule_Assembly",
+    "position_godot": [
+      0.0,
+      0.0,
+      -30.0
+    ],
+    "yaw_godot": 0.0,
+    "collection": "12_可复用空间模块"
+  }
+}
