@@ -41,7 +41,9 @@ func _ready() -> void:
 		var p = layout[kind].position_godot
 		actor.position = Vector3(p[0],p[1],p[2])
 		actor.rotation.y = layout[kind].yaw_godot
-		if kind == "clock":actor.position = Vector3(.10,2.12,-2.745)
+		if kind == "clock":
+			actor.position = Vector3(.10,2.12,-2.78)
+			model.scale.z=.60
 		if kind == "board":actor.position = Vector3(-1.4,1.96,-2.755)
 		if kind == "locker":
 			actor.scale = Vector3(.85,.92,.42)

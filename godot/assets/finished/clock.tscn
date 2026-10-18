@@ -450,36 +450,43 @@ size = Vector3(0.028, 0.055, 0.012)
 [node name="Clock_Back" type="MeshInstance3D" parent="." unique_id=613346497]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.026)
 material_override = SubResource("StandardMaterial3D_cksg4")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_yglkx")
 
 [node name="Clock_CaseSide" type="MeshInstance3D" parent="." unique_id=289274441]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.014)
 material_override = SubResource("StandardMaterial3D_cksg4")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_0kkjl")
 
 [node name="Clock_BackSeam" type="MeshInstance3D" parent="." unique_id=1408779706]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.014)
 material_override = SubResource("StandardMaterial3D_josh6")
+cast_shadow = 0
 mesh = SubResource("TorusMesh_xlt1s")
 
 [node name="Clock_Frame" type="MeshInstance3D" parent="." unique_id=283749424]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.055)
 material_override = SubResource("StandardMaterial3D_cksg4")
+cast_shadow = 0
 mesh = SubResource("TorusMesh_1i4py")
 
 [node name="Clock_BezelWornEdge" type="MeshInstance3D" parent="." unique_id=476692897]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.069)
 material_override = SubResource("StandardMaterial3D_3c4g0")
+cast_shadow = 0
 mesh = SubResource("TorusMesh_bbtxi")
 
 [node name="Clock_RecessRing" type="MeshInstance3D" parent="." unique_id=113453390]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.06)
 material_override = SubResource("StandardMaterial3D_josh6")
+cast_shadow = 0
 mesh = SubResource("TorusMesh_q4tye")
 
 [node name="Clock_Face" type="MeshInstance3D" parent="." unique_id=1040673729]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.056)
 material_override = SubResource("StandardMaterial3D_fm63p")
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_fawqa")
 
 [node name="Clock_Tick_00" type="MeshInstance3D" parent="." unique_id=715061566]
@@ -959,24 +966,29 @@ mesh = SubResource("ArrayMesh_2ccp4")
 [node name="Clock_CaseScrew_0" type="MeshInstance3D" parent="." unique_id=1174162720]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.21708179, 0.21708179, 0.071)
 material_override = SubResource("StandardMaterial3D_k5k3r")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_w85dk")
 
 [node name="Clock_CaseScrew_1" type="MeshInstance3D" parent="." unique_id=1626983394]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.21708179, -0.21708179, 0.071)
 material_override = SubResource("StandardMaterial3D_k5k3r")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_qskex")
 
 [node name="Clock_CaseScrew_2" type="MeshInstance3D" parent="." unique_id=780220737]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.21708179, -0.21708179, 0.071)
 material_override = SubResource("StandardMaterial3D_k5k3r")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_537ea")
 
 [node name="Clock_CaseScrew_3" type="MeshInstance3D" parent="." unique_id=1131705056]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.21708179, 0.21708179, 0.071)
 material_override = SubResource("StandardMaterial3D_k5k3r")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_1leoa")
 
 [node name="Clock_WallHanger" type="MeshInstance3D" parent="." unique_id=715623908]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.278, -0.043)
 material_override = SubResource("StandardMaterial3D_cksg4")
+cast_shadow = 0
 mesh = SubResource("BoxMesh_jo8fo")
