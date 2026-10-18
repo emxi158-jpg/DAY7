@@ -38,8 +38,11 @@ func run() -> void:
 	var previews=[
 		["01_完整等待室",Vector3(-2.7,1.68,3.05),Vector3(.0,1.42,-1.05),65.0],
 		["02_挂钟与壁灯",Vector3(.13,2.23,-.95),Vector3(.13,2.32,-2.78),42.0],
-		["03_地板与光感",Vector3(.3,.70,2.4),Vector3(1.3,.1,-1.6),57.0],
-		["04_公告板",Vector3(-1.4,2.0,-.95),Vector3(-1.4,1.97,-2.76),47.0]]
+		["03_地板与光感",Vector3(.20,.65,3.55),Vector3(.0,.02,1.75),58.0],
+		["04_公告板",Vector3(-1.4,2.0,-.95),Vector3(-1.4,1.97,-2.76),47.0],
+		["05_天花双管灯",Vector3(-.65,2.18,1.12),Vector3(-.65,2.97,-.12),49.0],
+		["06_饮水机",Vector3(-2.88,1.00,-.63),Vector3(-3.35,.79,-2.22),53.0],
+		["07_双柜布局",Vector3(.65,1.55,.12),Vector3(1.99,1.22,-2.35),57.0]]
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://previews"))
 	for spec in previews:
 		camera.global_position=spec[1]
@@ -48,7 +51,13 @@ func run() -> void:
 		for i in range(130):await process_frame
 		await RenderingServer.frame_post_draw
 		var image=root.get_texture().get_image()
-		image.save_png("res://previews/"+("diag_" if "--no-shadows" in OS.get_cmdline_user_args() else "")+spec[0]+".png")
+		var output="res://previews/"+("diag_" if "--no-shadows" in OS.get_cmdline_user_args() else "")+spec[0]+".png"
+		var saved=ERR_BUSY
+		for attempt in range(4):
+			saved=image.save_png(output)
+			if saved==OK:break
+			for frame in range(10):await process_frame
+		assert(saved==OK,"预览截图保存失败："+output)
 		print("CAPTURED ",spec[0])
 	var report={"meshes":world.find_children("*","MeshInstance3D",true,false).size(),"floor_tiles":world.get_node("RoomDecor/Architecture/OldTileFloor").get_child_count(),"baked_users":world.get_node("RoomDecor/BakedIndirectLight").light_data.get_user_count(),"renderer":RenderingServer.get_rendering_device().get_device_name(),"loops":4}
 	FileAccess.open("res://full_room_verification.json",FileAccess.WRITE).store_string(JSON.stringify(report,"  "))

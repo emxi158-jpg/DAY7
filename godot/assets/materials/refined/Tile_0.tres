@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/materials/refined/tile_0_albedo.png" id="1_m7y2e"]
+[ext_resource type="Texture2D" path="res://assets/materials/refined/tile_0_normal.png" id="2_1ndwp"]
+[ext_resource type="Texture2D" path="res://assets/materials/refined/tile_0_roughness.png" id="3_3ytpn"]
+
+[resource]
+albedo_texture = ExtResource("1_m7y2e")
+metallic_specular = 0.45
+roughness_texture = ExtResource("3_3ytpn")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_scale = 0.45
+normal_texture = ExtResource("2_1ndwp")
+texture_filter = 5

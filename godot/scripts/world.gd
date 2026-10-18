@@ -43,7 +43,10 @@ func _ready() -> void:
 		actor.rotation.y = layout[kind].yaw_godot
 		if kind == "clock":actor.position = Vector3(.10,2.12,-2.745)
 		if kind == "board":actor.position = Vector3(-1.4,1.96,-2.755)
-		if kind == "locker":actor.scale.z = .62
+		if kind == "locker":
+			actor.scale = Vector3(.85,.92,.42)
+			actor.position.x = 1.48
+			actor.position.z = -2.40
 		actor.configure(kind,model,self)
 		actor.hint.connect(show_message)
 		actors[kind] = actor

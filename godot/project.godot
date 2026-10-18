@@ -28,5 +28,6 @@ enabled=PackedStringArray()
 
 [rendering]
 
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=3
 environment/defaults/default_clear_color=Color(0.015, 0.018, 0.018, 1)
 anti_aliasing/quality/use_taa=true
