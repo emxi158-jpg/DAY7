@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://samples/material_study/textures/white_plaster_02_diff_2k.jpg" id="1_cpjhd"]
+[ext_resource type="Texture2D" path="res://samples/material_study/textures/white_plaster_02_nor_gl_2k.jpg" id="2_jrhwh"]
+[ext_resource type="Texture2D" path="res://samples/material_study/textures/white_plaster_02_rough_2k.jpg" id="3_lv22w"]
+
+[resource]
+albedo_color = Color(0.55, 0.52, 0.46, 1)
+albedo_texture = ExtResource("1_cpjhd")
+metallic_specular = 0.2
+roughness_texture = ExtResource("3_lv22w")
+normal_enabled = true
+normal_scale = 1.2
+normal_texture = ExtResource("2_jrhwh")
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 5

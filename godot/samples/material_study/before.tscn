@@ -1,0 +1,814 @@
+[gd_scene format=4]
+
+[ext_resource type="ArrayMesh" path="res://assets/geometry/lighting/Sofa_Back.res" id="1_s1ely"]
+[ext_resource type="ArrayMesh" path="res://assets/geometry/0482_Sofa_BackCushions.res" id="2_oxepg"]
+[ext_resource type="ArrayMesh" path="res://assets/geometry/lighting/Sofa_Base.res" id="3_f13fw"]
+[ext_resource type="ArrayMesh" path="res://assets/geometry/lighting/Sofa_Legs.res" id="4_dbnf1"]
+[ext_resource type="ArrayMesh" path="res://assets/geometry/lighting/Sofa_SeatCushions.res" id="5_52xti"]
+[ext_resource type="ArrayMesh" path="res://assets/geometry/lighting/Sofa_Throw_Conforming.res" id="6_uedhl"]
+[ext_resource type="Texture2D" path="res://assets/materials/plaster_color.png" id="7_k1r2d"]
+[ext_resource type="Texture2D" path="res://assets/materials/plaster_normal.png" id="8_5gj3k"]
+[ext_resource type="Texture2D" path="res://assets/materials/plaster_rough.png" id="9_ohxfk"]
+[ext_resource type="Texture2D" path="res://assets/materials/dado_color.png" id="10_y4bqe"]
+[ext_resource type="Texture2D" path="res://assets/materials/dado_normal.png" id="11_aha57"]
+[ext_resource type="Texture2D" path="res://assets/materials/dado_rough.png" id="12_170qs"]
+[ext_resource type="Texture2D" path="res://assets/materials/refined/tile_0_albedo.png" id="13_srmd8"]
+[ext_resource type="Texture2D" path="res://assets/materials/refined/tile_0_normal.png" id="14_15gcs"]
+[ext_resource type="Texture2D" path="res://assets/materials/refined/tile_0_roughness.png" id="15_ybk0p"]
+[ext_resource type="Texture2D" path="res://assets/materials/refined/tile_3_albedo.png" id="16_62gcp"]
+[ext_resource type="Texture2D" path="res://assets/materials/refined/tile_3_normal.png" id="17_dljie"]
+[ext_resource type="Texture2D" path="res://assets/materials/refined/tile_3_roughness.png" id="18_idh81"]
+[ext_resource type="Texture2D" path="res://assets/materials/refined/tile_2_albedo.png" id="19_atdly"]
+[ext_resource type="Texture2D" path="res://assets/materials/refined/tile_2_normal.png" id="20_ecgre"]
+[ext_resource type="Texture2D" path="res://assets/materials/refined/tile_2_roughness.png" id="21_hdpjw"]
+[ext_resource type="Texture2D" path="res://assets/materials/refined/tile_1_albedo.png" id="22_x7a4h"]
+[ext_resource type="Texture2D" path="res://assets/materials/refined/tile_1_normal.png" id="23_32g6p"]
+[ext_resource type="Texture2D" path="res://assets/materials/refined/tile_1_roughness.png" id="24_sbjtl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0uy5n"]
+size = Vector3(2.852727, 0.73955584, 0.93973804)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_46ejy"]
+size = Vector3(2.362307, 0.54697984, 0.36135107)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_je8vi"]
+size = Vector3(2.804152, 0.14567974, 1.050211)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c644a"]
+size = Vector3(2.6738577, 0.17297912, 1.1103433)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_crvyr"]
+size = Vector3(2.8067904, 0.19364837, 1.0267911)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xf048"]
+size = Vector3(1.1478231, 0.6724551, 0.6628096)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_klqsd"]
+resource_name = "WaitingRoom_plaster"
+albedo_texture = ExtResource("7_k1r2d")
+metallic_specular = 0.28
+roughness_texture = ExtResource("9_ohxfk")
+normal_enabled = true
+normal_scale = 0.45
+normal_texture = ExtResource("8_5gj3k")
+uv1_scale = Vector3(1.8, 1.8, 1.8)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 5
+
+[sub_resource type="BoxMesh" id="BoxMesh_ftni2"]
+size = Vector3(4.4, 1.72, 0.12)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j147o"]
+resource_name = "WaitingRoom_dado"
+albedo_texture = ExtResource("10_y4bqe")
+metallic_specular = 0.28
+roughness_texture = ExtResource("12_170qs")
+normal_enabled = true
+normal_scale = 0.45
+normal_texture = ExtResource("11_aha57")
+uv1_scale = Vector3(1.8, 1.8, 1.8)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 5
+
+[sub_resource type="BoxMesh" id="BoxMesh_7wlsr"]
+size = Vector3(4.4, 1.03, 0.12)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f502r"]
+albedo_color = Color(0.035, 0.04, 0.035, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_ex7b7"]
+size = Vector3(4.4, 0.12, 0.025)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oecoe"]
+albedo_texture = ExtResource("13_srmd8")
+metallic_specular = 0.45
+roughness_texture = ExtResource("15_ybk0p")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_scale = 0.45
+normal_texture = ExtResource("14_15gcs")
+texture_filter = 5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_njvy5"]
+lightmap_size_hint = Vector2i(30, 26)
+_surfaces = [{
+"aabb": AABB(-0.273, -0.014, -0.273, 0.546, 0.028, 0.546),
+"attribute_data": PackedByteArray("AAAAAAAAAABmZuY+T+wEPwAAgD8AAAAAooiIPE/sBD8AAIA/AACAP4mIiDzZiZ08AAAAAAAAgD9kZuY+2YmdPAAAAAAAAAAAd3c3P6yKrDymm0Q7pptEO+/uLj/ZiZ08TmKAP6abRDvv7i4/T+wEPwAAgD8AAAAAd3c3P0Z0BD8AAAAAAAAAALy7ez9P7AQ/AAAAAM3MTD0zM3M/T+wEPwAAgD/NzEw9MzNzP9mJnTwAAIA/AAAAALy7ez/ZiZ08AACAPwAAAABXluU+nthJP05igD+mm0Q7ZmbmPjuxUz9OYoA/TmKAP4mIiDw7sVM/AACAPwAAgD9aiZU8nthJPwAAAAAAAAAAzcwMP8VOLD8AAAAAzcxMPc3MDD8ndiI/AACAP83MTD28u3s/J3YiPwAAgD8AAAAAvLt7P8VOLD8AAIA/AACAP1VVFT+siqw8TmKAP05igD/NzAw/2YmdPKabRDtOYoA/zcwMP0/sBD8AAAAAAACAP1VVFT9GdAQ/AAAAAAAAAACamVk/2YmdPAAAAADNzEw9ERFRP9mJnTwAAIA/zcxMPRERUT9P7AQ/AACAPwAAAACamVk/T+wEPwAAAAAAAIA/V5blPid2Ij+mm0Q7TmKAP2Zm5j7FTiw/pptEO6abRDuJiIg8xU4sPwAAAAAAAAAAWomVPCd2Ij8AAAAAAAAAAImIiDyxE3s/AAAAAM3MTD2JiIg8FDtxPwAAgD/NzEw9ZmbmPhQ7cT8AAIA/AAAAAGZm5j6xE3s/"),
+"format": 34359742519,
+"index_count": 54,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGAAaABsAHAAdAB4AHAAeAB8AIAAhACIAIAAiACMA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("g8CKvkJgZTyDwIq+g8CKPkJgZTyDwIq+g8CKPkJgZTyDwIo+g8CKvkJgZTyDwIo+g8CKvkJgZTyDwIq+qMaLvlg5NDyoxou+qMaLPlg5NDyoxou+g8CKPkJgZTyDwIq+qMaLvlg5NDyoxou+qMaLvkJgZbyoxou+qMaLPkJgZbyoxou+qMaLPlg5NDyoxou+g8CKPkJgZTyDwIq+qMaLPlg5NDyoxou+qMaLPlg5NDyoxos+g8CKPkJgZTyDwIo+qMaLPlg5NDyoxou+qMaLPkJgZbyoxou+qMaLPkJgZbyoxos+qMaLPlg5NDyoxos+g8CKPkJgZTyDwIo+qMaLPlg5NDyoxos+qMaLvlg5NDyoxos+g8CKvkJgZTyDwIo+qMaLPlg5NDyoxos+qMaLPkJgZbyoxos+qMaLvkJgZbyoxos+qMaLvlg5NDyoxos+g8CKvkJgZTyDwIo+qMaLvlg5NDyoxos+qMaLvlg5NDyoxou+g8CKvkJgZTyDwIq+qMaLvlg5NDyoxos+qMaLvkJgZbyoxos+qMaLvkJgZbyoxou+qMaLvlg5NDyoxou+AID//////78AgP//////vwCA//////+/AID//////7+kzP//////P6TM//////8/pMz//////z+kzP//////P/////////8//////////z//////////P/////////8/o8xZs4fT5I6jzFmzn9PdjqPMWbPvrzmco8xZs8evV5z//wCA/3//P///AID/f/8///8AgP9//z///wCA/3//P/9/WbP///+//39Zs////7//f1mz////v/9/WbP///+//3//fwAA/z//f/9/AAD/P/9//38AAP8//3//fwAA/z9ZM1mzB1DLY1kzWbMcULxjWTNZs50sDXFZM1mzbywccQAAAID//wAAAAAAgP//AAAAAACA//8AAAAAAID//wAA")
+}]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lejw5"]
+albedo_texture = ExtResource("16_62gcp")
+metallic_specular = 0.45
+roughness_texture = ExtResource("18_idh81")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_scale = 0.45
+normal_texture = ExtResource("17_dljie")
+texture_filter = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bk73p"]
+albedo_texture = ExtResource("19_atdly")
+metallic_specular = 0.45
+roughness_texture = ExtResource("21_hdpjw")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_scale = 0.45
+normal_texture = ExtResource("20_ecgre")
+texture_filter = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spion"]
+albedo_texture = ExtResource("22_x7a4h")
+metallic_specular = 0.45
+roughness_texture = ExtResource("24_sbjtl")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_scale = 0.45
+normal_texture = ExtResource("23_32g6p")
+texture_filter = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1y34q"]
+albedo_color = Color(0.075, 0.068, 0.055, 1)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="BoxMesh_j47dk"]
+size = Vector3(4.4, 0.1, 3.3)
+
+[sub_resource type="Environment" id="Environment_mdo6p"]
+background_mode = 1
+background_color = Color(0.035, 0.04, 0.045, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.5, 0.5, 0.5, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.12
+tonemap_mode = 4
+ssr_enabled = true
+ssao_enabled = true
+ssao_radius = 0.16
+ssao_intensity = 0.75
+
+[node name="MaterialStudy_Before" type="Node3D" unique_id=573857070]
+metadata/comparison = "Identical geometry source, light rig, exposure, cameras; after replaces only sample materials and added seams"
+
+[node name="Sofa_ExistingGeometry" type="Node3D" parent="." unique_id=329237633]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0042364, 0.008, -0.012425661)
+metadata/extras = {
+"asset_data": {
+"access": "free",
+"accessLabel": "Free",
+"addonVersion": "3.11.0",
+"assetBaseId": "82978eed-d3b8-4c52-b4c0-f817e4eb429e",
+"assetType": "model",
+"author": {
+"aboutMe": "Passionate 3D artist.
+I love creating models in Blender. Blender is my hobby, not full time job.",
+"aboutMeUrl": "",
+"avatar128": "/avatar-redirect/ac731900-5dc5-4a69-9a4f-ab897cc007ba/128/",
+"firstName": "ydd",
+"fullName": "ydd 3D",
+"gravatarHash": "d53d719bf329b8bc9a0370a905d13613",
+"id": "298039",
+"lastName": "3D",
+"socialNetworks": [{
+"socialNetwork": {
+"icon": "<i class=\"fab fa-artstation\" title=\"ArtStation\"></i><span class=\"sr-only\">ArtStation</span>",
+"name": "ArtStation",
+"order": 5.0
+},
+"url": "https://www.artstation.com/ydd1000"
+}]
+},
+"available_resolutions": [512.0, 1024.0, 2048.0],
+"basePrice": "",
+"bbox_max": [1.5779, 0.6022, 1.0085],
+"bbox_min": [-1.4264, -0.5671, 0.0],
+"canDownload": true,
+"canDownloadError": true,
+"category": "sofa",
+"created": "2024-03-27T10:37:23.853112+01:00",
+"description": "Modern dark brown leather sofa with three seat cushions, three large back cushions, wide armrests, and a warm wooden platform base. A stylish and comfortable piece for living rooms, lounges, or contemporary interior scenes.",
+"dictParameters": {
+"addons": true,
+"boundBoxMaxX": 1.5779,
+"boundBoxMaxY": 0.6022,
+"boundBoxMaxZ": 1.0085,
+"boundBoxMinX": -1.4264,
+"boundBoxMinY": -0.5671,
+"boundBoxMinZ": 0.0,
+"condition": "new",
+"dimensionX": 3.0043,
+"dimensionY": 1.1693,
+"dimensionZ": 1.0085,
+"engines": ["cycles"],
+"faceCount": 117877.0,
+"faceCountRender": 1710416.0,
+"imageAltTextGen4v": "Detailed 3D rendering of a brown leather couch with wooden legs and a colorful throw blanket.",
+"joinBlenderkitDiscounts": true,
+"manifold": false,
+"materials": ["Wood light", "Leather", "Fabric"],
+"megapixels": 44.0,
+"meshPolyType": "quad_dominant",
+"modelStyle": "realistic",
+"modifiers": ["subsurf", "solidify"],
+"nodeCount": 41.0,
+"objectCount": 7.0,
+"platforms": ["windows-x64", "macos-arm64", "linux-x64", "macos-x64", "windows-arm64"],
+"procedural": false,
+"productionLevel": "finished",
+"rig": false,
+"sexualizedContent": false,
+"shaders": ["principled"],
+"simulation": false,
+"textureCount": 11.0,
+"textureResolutionMax": 2048.0,
+"textureResolutionMin": 2048.0,
+"uv": true
+},
+"displayName": "Leather sofa",
+"downloaded": 0.0,
+"files": [{
+"created": "2024-03-27T10:37:57.272547+01:00",
+"downloadUrl": "https://www.blendkit.com/api/v1/downloads/3a718264-c329-4812-bccf-d3ec54281d68/",
+"fileThumbnail": "",
+"fileThumbnailLarge": "",
+"fileType": "blend",
+"fileUploadSize": 30265251.0,
+"filename": "assets/23efbd647c934dfba4a84bdb9159ccbe/files/blend_a6c5ce06-0eac-4c75-92a3-e34c106c7dad.blend",
+"modified": "2025-02-20T14:51:17.499306+01:00",
+"resolution": 0.0,
+"thumbnailMiddleUrl": "",
+"thumbnailSmallUrl": "",
+"url": ""
+}, {
+"created": "2024-03-30T01:52:00.566393+01:00",
+"downloadUrl": "https://www.blendkit.com/api/v1/downloads/952249c1-f7d1-4382-8b48-06acb2578f5f/",
+"fileThumbnail": "",
+"fileThumbnailLarge": "",
+"fileType": "resolution_0_5K",
+"fileUploadSize": 8960402.0,
+"filename": "assets/23efbd647c934dfba4a84bdb9159ccbe/files/resolution_0_5K_10f3acd7-02cd-4c53-aa5c-49bad42c3045.blend",
+"modified": "2025-02-20T14:51:17.520561+01:00",
+"resolution": 0.0,
+"thumbnailMiddleUrl": "",
+"thumbnailSmallUrl": "",
+"url": ""
+}, {
+"created": "2024-03-30T01:51:59.659697+01:00",
+"downloadUrl": "https://www.blendkit.com/api/v1/downloads/1ec749c5-951d-4d2b-9d66-31285b1c848d/",
+"fileThumbnail": "",
+"fileThumbnailLarge": "",
+"fileType": "resolution_1K",
+"fileUploadSize": 10508533.0,
+"filename": "assets/23efbd647c934dfba4a84bdb9159ccbe/files/resolution_1K_b8e3a956-e818-43ec-bbb0-a8627f8e79d1.blend",
+"modified": "2025-02-20T14:51:17.541911+01:00",
+"resolution": 0.0,
+"thumbnailMiddleUrl": "",
+"thumbnailSmallUrl": "",
+"url": ""
+}, {
+"created": "2024-03-30T01:51:57.691250+01:00",
+"downloadUrl": "https://www.blendkit.com/api/v1/downloads/8cf68a82-178a-4b96-bd55-d9d74cdb3315/",
+"fileThumbnail": "",
+"fileThumbnailLarge": "",
+"fileType": "resolution_2K",
+"fileUploadSize": 18154901.0,
+"file_name": "C:\\Users\\Fu\\blenderkit_data\\models\\leather-sofa_23efbd64-7c93-4dfb-a4a8-4bdb9159ccbe\\leather-sofa_2K_b69bc65d-1a3b-4352-a54d-7cd4e83bc326.blend",
+"filename": "assets/23efbd647c934dfba4a84bdb9159ccbe/files/resolution_2K_b69bc65d-1a3b-4352-a54d-7cd4e83bc326.blend",
+"modified": "2025-02-20T14:51:17.595208+01:00",
+"resolution": 0.0,
+"thumbnailMiddleUrl": "",
+"thumbnailSmallUrl": "",
+"url": "https://assets.blenderkit.com/assets/23efbd647c934dfba4a84bdb9159ccbe/files/resolution_2K_b69bc65d-1a3b-4352-a54d-7cd4e83bc326.blend?verify=1791900927-ZjNBuwaGMEDE63TgF%2FMv%2BKi9bWkZumg5QjKS9s6bof0%3D"
+}, {
+"created": "2024-03-27T10:37:44.145408+01:00",
+"downloadUrl": "https://www.blendkit.com/api/v1/downloads/e7146da0-b283-4782-927c-0e21c3948839/",
+"fileThumbnail": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.96x96_q85_crop-%2C.png",
+"fileThumbnailLarge": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.1024x1024_q85_crop-%2C.png",
+"fileType": "thumbnail",
+"fileUploadSize": 2326915.0,
+"filename": "assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png",
+"modified": "2025-12-22T22:07:27.497863+01:00",
+"resolution": 0.0,
+"thumbnailMiddleUrl": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.512x512_q85_crop-%2C.png",
+"thumbnailSmallUrl": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.256x256_q85_crop-%2C.png",
+"url": ""
+}],
+"filesSize": 68570.0,
+"id": "23efbd64-7c93-4dfb-a4a8-4bdb9159ccbe",
+"isForSale": false,
+"isFree": true,
+"isPrivate": false,
+"lastAnimatedThumbnailUpload": null,
+"lastBlendUpload": "2024-03-27T09:37:57.272547+00:00",
+"lastGltfGodotUpload": null,
+"lastGltfUpload": null,
+"lastPhotoThumbnailUpload": null,
+"lastResolutionUpload": "2024-03-30T00:52:00.566393+00:00",
+"lastThumbnailUpload": "2024-03-27T09:37:44.145408+00:00",
+"lastUserInteraction": "2024-03-27T10:37:57.768949+01:00",
+"lastVideoUpload": null,
+"lastZipFileUpload": "",
+"last_upload": "2024-03-27T09:37:57.272547+00:00",
+"license": "royalty_free",
+"max_resolution": 2048.0,
+"name": "Leather sofa",
+"pk": 85868.0,
+"ratingsAverage": {
+"bookmarks": 0.9897610921501706,
+"quality": 9.0,
+"virtualPrice": null,
+"workingHours": 9.0
+},
+"ratingsCount": {
+"bookmarks": 293.0,
+"quality": 6.0,
+"virtualPrice": 0.0,
+"workingHours": 6.0
+},
+"ratingsMedian": {
+"bookmarks": 1.0,
+"quality": 10.0,
+"virtualPrice": null,
+"workingHours": 9.0
+},
+"ratingsSum": {
+"bookmarks": 290.0,
+"quality": 54.0,
+"score": 810.0,
+"virtualPrice": null,
+"workingHours": 57.0
+},
+"resolution": "resolution_2K",
+"score": 810.0,
+"showMarketingLabels": true,
+"sourceAppName": "blender",
+"sourceAppVersion": "3.6.4",
+"tags": ["leathersofa", "brownleather", "sofa", "seatcushions", "backcushions", "armrests", "woodenbase", "modern", "livingroom", "lounge"],
+"thumbnail": "thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.512x512_q85_crop-%2C.png.webp",
+"thumbnailLargeUrl": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.1024x1024_q85_crop-%2C.png",
+"thumbnailLargeUrlNonsquared": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.1024x1024_q85.png",
+"thumbnailLargeUrlNonsquaredWebp": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.1024x1024_q85.png.webp?webp_generated=1787396451",
+"thumbnailLargeUrlWebp": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.1024x1024_q85_crop-%2C.png.webp?webp_generated=1787396451",
+"thumbnailMiddleUrl": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.512x512_q85_crop-%2C.png",
+"thumbnailMiddleUrlNonsquared": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.512x512_q85.png",
+"thumbnailMiddleUrlNonsquaredWebp": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.512x512_q85.png.webp?webp_generated=1787396451",
+"thumbnailMiddleUrlWebp": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.512x512_q85_crop-%2C.png.webp?webp_generated=1787396451",
+"thumbnailSmallUrl": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.256x256_q85_crop-%2C.png",
+"thumbnailSmallUrlNonsquared": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.256x256_q85.png",
+"thumbnailSmallUrlNonsquaredWebp": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.256x256_q85.png.webp?webp_generated=1787396451",
+"thumbnailSmallUrlWebp": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.256x256_q85_crop-%2C.png.webp?webp_generated=1787396451",
+"thumbnailXlargeUrl": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.2048x2048_q85_crop-%2C.png",
+"thumbnailXlargeUrlNonsquared": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.2048x2048_q85.png",
+"thumbnailXlargeUrlNonsquaredWebp": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.2048x2048_q85.png.webp?webp_generated=1787396451",
+"thumbnailXlargeUrlWebp": "https://public.blenderkit.com/thumbnails/assets/23efbd647c934dfba4a84bdb9159ccbe/files/thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.2048x2048_q85_crop-%2C.png.webp?webp_generated=1787396451",
+"thumbnail_small": "thumbnail_f241599f-c747-4982-bd6a-11c92a5967e4.png.256x256_q85_crop-%2C.png.webp",
+"tooltip_data": {
+"aname": "Leather sofa",
+"author_text": "by ydd 3D",
+"base_price_bg_color": [0.7, 0.7, 0.7, 0.6],
+"base_price_color": [1.0, 1.0, 1.0, 0.9],
+"base_price_text": "",
+"quality": "9",
+"user_price_bg_color": [0.7, 0.7, 0.7, 0.6],
+"user_price_color": [1.0, 1.0, 1.0, 0.9],
+"user_price_text": ""
+},
+"url": "https://www.blendkit.com/api/v1/assets/23efbd64-7c93-4dfb-a4a8-4bdb9159ccbe/",
+"verificationStatus": "validated",
+"versionNumber": 1.0,
+"videoLink": "",
+"webpGeneratedTimestamp": 1787396451.0
+},
+"blenderkit": {
+"asset_base_id": "82978eed-d3b8-4c52-b4c0-f817e4eb429e",
+"bbox_max": [1.5778888, 0.6022292, 1.0085238],
+"bbox_min": [-1.4263618, -0.5670805, 0.0],
+"category": 6.0,
+"condition": 1.0,
+"description": "Simple leather sofa with fabric blanket for your living room scenes",
+"dimensions": [3.0042505, 1.1693096, 1.0085238],
+"engine": 0.0,
+"face_count": 117877.0,
+"face_count_render": 1710416.0,
+"has_thumbnail": 1.0,
+"id": "23efbd64-7c93-4dfb-a4a8-4bdb9159ccbe",
+"is_procedural": 0.0,
+"manifold": 0.0,
+"materials": "Wood light, Leather, Fabric, ",
+"mesh_poly_type": 1.0,
+"modifiers": "subsurf,solidify,",
+"name": "Leather sofa",
+"name_changed": 1.0,
+"name_old": "Leather sofa",
+"node_count": 41.0,
+"object_count": 7.0,
+"report": "",
+"shaders": "principled, ",
+"subcategory": 18.0,
+"tags": "living room, sofa, couch, fabric, leather",
+"texture_count": 11.0,
+"texture_resolution_max": 2048.0,
+"texture_resolution_min": 2048.0,
+"thumbnail": "//untitled.png",
+"thumbnail_generating_state": "",
+"total_megapixels": 44.0,
+"upload_state": "",
+"uploading": 0.0,
+"uv": 1.0
+},
+"category": "02_沙发",
+"source_original_name": "Leather sofa"
+}
+
+[node name="Sofa_Back" type="MeshInstance3D" parent="Sofa_ExistingGeometry" unique_id=1439631082]
+gi_mode = 2
+mesh = ExtResource("1_s1ely")
+metadata/extras = {
+"category": "02_沙发",
+"source_original_name": "Back"
+}
+
+[node name="SolidBounds" type="StaticBody3D" parent="Sofa_ExistingGeometry/Sofa_Back" unique_id=1399667923]
+
+[node name="_CollisionShape3D_51" type="CollisionShape3D" parent="Sofa_ExistingGeometry/Sofa_Back/SolidBounds" unique_id=1207208434]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66893e-06, 0.54248977, -0.13236016)
+shape = SubResource("BoxShape3D_0uy5n")
+
+[node name="Sofa_BackCushions" type="MeshInstance3D" parent="Sofa_ExistingGeometry" unique_id=2072651388]
+gi_mode = 2
+mesh = ExtResource("2_oxepg")
+metadata/extras = {
+"category": "02_沙发",
+"source_original_name": "CushionsTOP"
+}
+
+[node name="SolidBounds" type="StaticBody3D" parent="Sofa_ExistingGeometry/Sofa_BackCushions" unique_id=1186564958]
+
+[node name="_CollisionShape3D_52" type="CollisionShape3D" parent="Sofa_ExistingGeometry/Sofa_BackCushions/SolidBounds" unique_id=1391742712]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0035426617, 0.73503387, -0.29531413)
+shape = SubResource("BoxShape3D_46ejy")
+
+[node name="Sofa_Base" type="MeshInstance3D" parent="Sofa_ExistingGeometry" unique_id=843351110]
+gi_mode = 2
+mesh = ExtResource("3_f13fw")
+metadata/extras = {
+"category": "02_沙发",
+"source_original_name": "Bottom"
+}
+
+[node name="SolidBounds" type="StaticBody3D" parent="Sofa_ExistingGeometry/Sofa_Base" unique_id=1066305866]
+
+[node name="_CollisionShape3D_53" type="CollisionShape3D" parent="Sofa_ExistingGeometry/Sofa_Base/SolidBounds" unique_id=542025408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.66893e-06, 0.24499343, 0.03503871)
+shape = SubResource("BoxShape3D_je8vi")
+
+[node name="Sofa_Legs" type="MeshInstance3D" parent="Sofa_ExistingGeometry" unique_id=1180657185]
+gi_mode = 2
+mesh = ExtResource("4_dbnf1")
+metadata/extras = {
+"blenderkit": {},
+"category": "02_沙发",
+"source_original_name": "Legs"
+}
+
+[node name="SolidBounds" type="StaticBody3D" parent="Sofa_ExistingGeometry/Sofa_Legs" unique_id=94016513]
+
+[node name="_CollisionShape3D_54" type="CollisionShape3D" parent="Sofa_ExistingGeometry/Sofa_Legs/SolidBounds" unique_id=2132399415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1920929e-07, 0.08648956, -0.01183635)
+shape = SubResource("BoxShape3D_c644a")
+
+[node name="Sofa_SeatCushions" type="MeshInstance3D" parent="Sofa_ExistingGeometry" unique_id=1685149426]
+gi_mode = 2
+mesh = ExtResource("5_52xti")
+metadata/extras = {
+"category": "02_沙发",
+"source_original_name": "CushionsBOTTOM"
+}
+
+[node name="SolidBounds" type="StaticBody3D" parent="Sofa_ExistingGeometry/Sofa_SeatCushions" unique_id=1647584743]
+
+[node name="_CollisionShape3D_55" type="CollisionShape3D" parent="Sofa_ExistingGeometry/Sofa_SeatCushions/SolidBounds" unique_id=1787054168]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7683716e-05, 0.39675552, 0.05368489)
+shape = SubResource("BoxShape3D_crvyr")
+
+[node name="Sofa_Throw_Conforming" type="MeshInstance3D" parent="Sofa_ExistingGeometry" unique_id=2079458812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9257636, -0.008, 2.0124257)
+visible = false
+gi_mode = 2
+mesh = ExtResource("6_uedhl")
+metadata/extras = {
+"category": "02_沙发",
+"geometry_source": "Mirrored fitted cloth supplied with the original sofa; source cloth/material retained unchanged"
+}
+
+[node name="SolidBounds" type="StaticBody3D" parent="Sofa_ExistingGeometry/Sofa_Throw_Conforming" unique_id=1405412187]
+
+[node name="_CollisionShape3D_56" type="CollisionShape3D" parent="Sofa_ExistingGeometry/Sofa_Throw_Conforming/SolidBounds" unique_id=1641952826]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9279071, 0.60546994, -1.9008466)
+shape = SubResource("BoxShape3D_xf048")
+
+[node name="Wall_Upper" type="MeshInstance3D" parent="." unique_id=523802484]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89, -0.76)
+material_override = SubResource("StandardMaterial3D_klqsd")
+mesh = SubResource("BoxMesh_ftni2")
+
+[node name="Wall_Dado" type="MeshInstance3D" parent="." unique_id=1755027693]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.515, -0.76)
+material_override = SubResource("StandardMaterial3D_j147o")
+mesh = SubResource("BoxMesh_7wlsr")
+
+[node name="Wall_Skirting" type="MeshInstance3D" parent="." unique_id=948068477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, -0.688)
+material_override = SubResource("StandardMaterial3D_f502r")
+mesh = SubResource("BoxMesh_ex7b7")
+
+[node name="SmallFloorPatch" type="Node3D" parent="." unique_id=1211977360]
+
+[node name="Tile_0_0" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1922562270]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.925, -0.014, -0.425)
+material_override = SubResource("StandardMaterial3D_oecoe")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_0_1" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1337255800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.925, -0.014, 0.125)
+material_override = SubResource("StandardMaterial3D_lejw5")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_0_2" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=436063218]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.925, -0.014, 0.675)
+material_override = SubResource("StandardMaterial3D_bk73p")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_0_3" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=713451823]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.925, -0.014, 1.225)
+material_override = SubResource("StandardMaterial3D_spion")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_0_4" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=955920593]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.925, -0.014, 1.775)
+material_override = SubResource("StandardMaterial3D_oecoe")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_0_5" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=958149126]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.925, -0.014, 2.325)
+material_override = SubResource("StandardMaterial3D_lejw5")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_1_0" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1322766110]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.375, -0.014, -0.425)
+material_override = SubResource("StandardMaterial3D_spion")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_1_1" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1598792901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.375, -0.014, 0.125)
+material_override = SubResource("StandardMaterial3D_oecoe")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_1_2" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1527593592]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.375, -0.014, 0.675)
+material_override = SubResource("StandardMaterial3D_lejw5")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_1_3" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=545879721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.375, -0.014, 1.225)
+material_override = SubResource("StandardMaterial3D_bk73p")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_1_4" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1098729771]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.375, -0.014, 1.775)
+material_override = SubResource("StandardMaterial3D_spion")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_1_5" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1226662446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.375, -0.014, 2.325)
+material_override = SubResource("StandardMaterial3D_spion")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_2_0" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1093422236]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.825, -0.014, -0.425)
+material_override = SubResource("StandardMaterial3D_lejw5")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_2_1" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1563487143]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.825, -0.014, 0.125)
+material_override = SubResource("StandardMaterial3D_bk73p")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_2_2" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1614348457]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.825, -0.014, 0.675)
+material_override = SubResource("StandardMaterial3D_spion")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_2_3" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1815400612]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.825, -0.014, 1.225)
+material_override = SubResource("StandardMaterial3D_oecoe")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_2_4" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=368070054]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.825, -0.014, 1.775)
+material_override = SubResource("StandardMaterial3D_lejw5")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_2_5" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=788258634]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.825, -0.014, 2.325)
+material_override = SubResource("StandardMaterial3D_bk73p")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_3_0" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=963306083]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.275, -0.014, -0.425)
+material_override = SubResource("StandardMaterial3D_oecoe")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_3_1" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=575327479]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.275, -0.014, 0.125)
+material_override = SubResource("StandardMaterial3D_lejw5")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_3_2" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1110697290]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.275, -0.014, 0.675)
+material_override = SubResource("StandardMaterial3D_bk73p")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_3_3" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1608326471]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.275, -0.014, 1.225)
+material_override = SubResource("StandardMaterial3D_bk73p")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_3_4" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=993571653]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.275, -0.014, 1.775)
+material_override = SubResource("StandardMaterial3D_spion")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_3_5" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1601314146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.275, -0.014, 2.325)
+material_override = SubResource("StandardMaterial3D_oecoe")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_4_0" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1607269661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.275, -0.014, -0.425)
+material_override = SubResource("StandardMaterial3D_bk73p")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_4_1" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1112583902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.275, -0.014, 0.125)
+material_override = SubResource("StandardMaterial3D_spion")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_4_2" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=52473382]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.275, -0.014, 0.675)
+material_override = SubResource("StandardMaterial3D_oecoe")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_4_3" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=376528764]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.275, -0.014, 1.225)
+material_override = SubResource("StandardMaterial3D_lejw5")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_4_4" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=597378987]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.275, -0.014, 1.775)
+material_override = SubResource("StandardMaterial3D_bk73p")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_4_5" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=944998995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.275, -0.014, 2.325)
+material_override = SubResource("StandardMaterial3D_spion")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_5_0" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=346592906]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.825, -0.014, -0.425)
+material_override = SubResource("StandardMaterial3D_lejw5")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_5_1" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=522992964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.825, -0.014, 0.125)
+material_override = SubResource("StandardMaterial3D_lejw5")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_5_2" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1381276016]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.825, -0.014, 0.675)
+material_override = SubResource("StandardMaterial3D_bk73p")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_5_3" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1477449623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.825, -0.014, 1.225)
+material_override = SubResource("StandardMaterial3D_spion")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_5_4" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=763214651]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.825, -0.014, 1.775)
+material_override = SubResource("StandardMaterial3D_oecoe")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_5_5" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1055060535]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.825, -0.014, 2.325)
+material_override = SubResource("StandardMaterial3D_lejw5")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_6_0" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=414368781]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.375, -0.014, -0.425)
+material_override = SubResource("StandardMaterial3D_spion")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_6_1" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1700319396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.375, -0.014, 0.125)
+material_override = SubResource("StandardMaterial3D_oecoe")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_6_2" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1006518900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.375, -0.014, 0.675)
+material_override = SubResource("StandardMaterial3D_lejw5")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_6_3" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1234530056]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.375, -0.014, 1.225)
+material_override = SubResource("StandardMaterial3D_bk73p")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_6_4" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=245680139]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.375, -0.014, 1.775)
+material_override = SubResource("StandardMaterial3D_spion")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_6_5" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1541203533]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.375, -0.014, 2.325)
+material_override = SubResource("StandardMaterial3D_oecoe")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_7_0" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=618665038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.925, -0.014, -0.425)
+material_override = SubResource("StandardMaterial3D_lejw5")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_7_1" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1302247884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.925, -0.014, 0.125)
+material_override = SubResource("StandardMaterial3D_bk73p")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_7_2" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=2084281579]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.925, -0.014, 0.675)
+material_override = SubResource("StandardMaterial3D_spion")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_7_3" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1444913244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.925, -0.014, 1.225)
+material_override = SubResource("StandardMaterial3D_oecoe")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_7_4" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1884295384]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.925, -0.014, 1.775)
+material_override = SubResource("StandardMaterial3D_lejw5")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Tile_7_5" type="MeshInstance3D" parent="SmallFloorPatch" unique_id=1559091843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.925, -0.014, 2.325)
+material_override = SubResource("StandardMaterial3D_bk73p")
+mesh = SubResource("ArrayMesh_njvy5")
+
+[node name="Floor_GroutBacking" type="MeshInstance3D" parent="." unique_id=909043828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.053, 0.95)
+material_override = SubResource("StandardMaterial3D_1y34q")
+mesh = SubResource("BoxMesh_j47dk")
+
+[node name="FixedMaterialInspectionEnvironment" type="WorldEnvironment" parent="." unique_id=1939028921]
+environment = SubResource("Environment_mdo6p")
+
+[node name="FixedSoftKey" type="OmniLight3D" parent="." unique_id=1577449798]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 2.6, 1.1)
+light_color = Color(1, 0.93, 0.84, 1)
+light_energy = 1.8
+light_size = 0.55
+shadow_enabled = true
+shadow_normal_bias = 0.7
+omni_range = 7.0
+
+[node name="FixedReadableShadowFill" type="OmniLight3D" parent="." unique_id=1722357692]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7, 1.55, 1.2)
+light_color = Color(0.84, 0.9, 1, 1)
+light_energy = 0.35
+omni_range = 6.0
+
+[node name="FixedWallRakingLight" type="OmniLight3D" parent="." unique_id=835146119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.85, 2.1, -0.32)
+light_color = Color(1, 0.89, 0.73, 1)
+light_energy = 0.25
+omni_range = 4.0
+
+[node name="LocalSurfaceReflections" type="ReflectionProbe" parent="." unique_id=1983217338]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0.8)
+size = Vector3(4.4, 2.8, 3.3)
+box_projection = true
+interior = true
+
+[node name="InspectionCamera" type="Camera3D" parent="." unique_id=470827546]
+transform = Transform3D(0.79860896, 0.0760107, -0.59703106, 0, 0.9919927, 0.12629503, 0.6018503, -0.10086034, 0.7922143, -2.6, 1.4, 3.35)
+current = true
+fov = 50.0

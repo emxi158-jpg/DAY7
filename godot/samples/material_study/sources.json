@@ -1,0 +1,65 @@
+[
+  {
+    "file": "brown_leather_albedo_2k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/brown_leather/brown_leather_albedo_2k.jpg",
+    "asset_page": "https://polyhaven.com/a/brown_leather",
+    "license": "CC0",
+    "sha256": "b0de2403a31efa31e501b0028c0bd8e504d5bd6318f4a5ce90c550c3067f96d8"
+  },
+  {
+    "file": "brown_leather_nor_gl_2k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/brown_leather/brown_leather_nor_gl_2k.jpg",
+    "asset_page": "https://polyhaven.com/a/brown_leather",
+    "license": "CC0",
+    "sha256": "3386277290af50b4d464dc9a9f195bbf8dd6f137b9ae0274552397d2f0135c98"
+  },
+  {
+    "file": "brown_leather_rough_2k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/brown_leather/brown_leather_rough_2k.jpg",
+    "asset_page": "https://polyhaven.com/a/brown_leather",
+    "license": "CC0",
+    "sha256": "8a47afca2630310849034fe40ca9497db0956c67c0d933e6efd49d3cd2befe83"
+  },
+  {
+    "file": "white_plaster_02_diff_2k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/white_plaster_02/white_plaster_02_diff_2k.jpg",
+    "asset_page": "https://polyhaven.com/a/white_plaster_02",
+    "license": "CC0",
+    "sha256": "0ca5245ba70777d3e41ff4566c9f8d363855461891802c55cb7dc0f6f85f084e"
+  },
+  {
+    "file": "white_plaster_02_nor_gl_2k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/white_plaster_02/white_plaster_02_nor_gl_2k.jpg",
+    "asset_page": "https://polyhaven.com/a/white_plaster_02",
+    "license": "CC0",
+    "sha256": "083579b03a8f31ec1886512e5972f3b893610bf26a2098f97910e0f46745cdc9"
+  },
+  {
+    "file": "white_plaster_02_rough_2k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/white_plaster_02/white_plaster_02_rough_2k.jpg",
+    "asset_page": "https://polyhaven.com/a/white_plaster_02",
+    "license": "CC0",
+    "sha256": "a3dc1911f6e25d88fdb0031fe0cfb602eec5496084c508774c60691bed087417"
+  },
+  {
+    "file": "floor_tiles_08_diff_2k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/floor_tiles_08/floor_tiles_08_diff_2k.jpg",
+    "asset_page": "https://polyhaven.com/a/floor_tiles_08",
+    "license": "CC0",
+    "sha256": "a5b2236265c8714ab243e70c624eb0db1231cb11795e50da9781e69556e04312"
+  },
+  {
+    "file": "floor_tiles_08_nor_gl_2k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/floor_tiles_08/floor_tiles_08_nor_gl_2k.jpg",
+    "asset_page": "https://polyhaven.com/a/floor_tiles_08",
+    "license": "CC0",
+    "sha256": "67f3502751728a0c486bf1f6c0ad27226a0e14a8b23cea54fb427491b9ee827a"
+  },
+  {
+    "file": "floor_tiles_08_rough_2k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/floor_tiles_08/floor_tiles_08_rough_2k.jpg",
+    "asset_page": "https://polyhaven.com/a/floor_tiles_08",
+    "license": "CC0",
+    "sha256": "212810ad2050d05704219c95f81c7da5d3b197ad6a0d3992a43d1e929b6f6491"
+  }
+]

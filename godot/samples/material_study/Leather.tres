@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://samples/material_study/textures/brown_leather_albedo_2k.jpg" id="1_yei4w"]
+[ext_resource type="Texture2D" path="res://samples/material_study/textures/brown_leather_nor_gl_2k.jpg" id="2_kle48"]
+[ext_resource type="Texture2D" path="res://samples/material_study/textures/brown_leather_rough_2k.jpg" id="3_hwxdh"]
+
+[resource]
+albedo_texture = ExtResource("1_yei4w")
+metallic_specular = 0.45
+roughness = 0.85
+roughness_texture = ExtResource("3_hwxdh")
+normal_enabled = true
+normal_scale = 0.85
+normal_texture = ExtResource("2_kle48")
+uv1_scale = Vector3(2.5, 2.5, 2.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 5
