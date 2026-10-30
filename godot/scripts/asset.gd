@@ -96,7 +96,7 @@ func configure(asset_kind: String, asset_model: Node3D, host: Node3D) -> void:
 			note_label.shaded = true
 			note_label.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 			note.add_child(note_label)
-			note_label.position = Vector3(0,-0.005,0.031)
+			note_label.position = Vector3(0,-0.005,0.0343)
 			area(note,Vector3(0,0,0.07),Vector3(0.20,0.16,0.10),"note")
 			set_note_state(0)
 
@@ -185,9 +185,9 @@ func _process(_delta: float) -> void:
 	var first = model.find_child("ExitDoor_CloserArmA",true,false)
 	var second = model.find_child("ExitDoor_CloserArmB",true,false)
 	if first == null or second == null: return
-	var fixed = Vector3(0.45,2.42,0)
+	var fixed = Vector3(0.45,2.36,0.06)
 	var hinge = Vector3(0.553,0.03,0.032)
-	var rest = Vector3(0.15,2.42,0.14)
+	var rest = Vector3(0.08,2.277,0.11)
 	var end = hinge + Basis(Vector3.UP,part("ExitDoor_Leaf").rotation.y)*(rest-hinge)
 	var d = end-fixed
 	var length = maxf(0.0001,Vector2(d.x,d.z).length())
@@ -337,3 +337,4 @@ func set_note_state(index: int) -> void:
 func _mirror_body_entered(body: Node3D) -> void:
 	if body == world.player and world.current_loop == 2 and world.gateway_target == "locker_mirror" and is_open:
 		mirror_entered.emit()
+

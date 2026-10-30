@@ -12,3 +12,8 @@ godot/*.log
 godot/bake_request.flag
 godot/publish_blobs.json
 godot/delivery_files.json
+
+!/打开质感小样.cmd
+godot/samples/material_study/previews/launch_verified.png*
+
+!/打开整体等待室.cmd

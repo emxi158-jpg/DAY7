@@ -1,0 +1,6 @@
+Created using Metal014 from ambientCG.com.
+Source https://ambientcg.com/a/Metal014
+License CC0 1.0 Universal https://docs.ambientcg.com/license/
+Downloaded 2026-10-26. 2K-JPG normal (OpenGL) and roughness.
+Creation method: PBRProcedural. No claim of photographic scanning.
+Painted metal also uses Metal028 maps already included in metal_coating_20261025.

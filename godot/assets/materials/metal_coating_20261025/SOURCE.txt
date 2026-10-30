@@ -1,0 +1,6 @@
+Created using Metal028 from ambientCG.com.
+Source: https://ambientcg.com/a/Metal028
+License: CC0 1.0 Universal (https://docs.ambientcg.com/license/)
+Downloaded 2026-10-25, 2K-JPG package.
+Used maps: OpenGL normal and roughness. Base paint color is authored separately.
+Source creation method: PBRProcedural (not a photo scan).

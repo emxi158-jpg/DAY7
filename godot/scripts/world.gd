@@ -20,6 +20,10 @@ var clock_value: SpinBox
 var edited_clock
 
 func _ready() -> void:
+	# Keep small moving clock hands and paper-edge shadows readable at close range.
+	get_viewport().positional_shadow_atlas_size=8192
+	get_viewport().set_positional_shadow_atlas_quadrant_subdiv(0,Viewport.SHADOW_ATLAS_QUADRANT_SUBDIV_1)
+	get_viewport().set_positional_shadow_atlas_quadrant_subdiv(1,Viewport.SHADOW_ATLAS_QUADRANT_SUBDIV_4)
 	ui_font = FontVariation.new()
 	ui_font.base_font = load("res://assets/fonts/NotoSansSC.ttf")
 	ui_font.variation_opentype = {"wght":500}
@@ -42,9 +46,9 @@ func _ready() -> void:
 		actor.position = Vector3(p[0],p[1],p[2])
 		actor.rotation.y = layout[kind].yaw_godot
 		if kind == "clock":
-			actor.position = Vector3(.10,2.12,-2.78)
+			actor.position = Vector3(-.10,2.12,-2.772)
 			model.scale.z=.60
-		if kind == "board":actor.position = Vector3(-1.4,1.96,-2.755)
+		if kind == "board":actor.position = Vector3(-1.78,1.96,-2.755)
 		if kind == "locker":
 			actor.scale = Vector3(.85,.92,.42)
 			actor.position.x = 1.48
@@ -74,6 +78,10 @@ func _ready() -> void:
 	enlarged_clock.scale = Vector3.ONE*3.2
 	enlarged_clock.configure("clock",copy_model,self)
 	enlarged_clock.hide()
+	load("res://scripts/room_light_groups.gd").apply(self)
+	var mirror_surface=room.get_node("Architecture/FurnitureAndShell/Mirror_assembly/Mirror_glass")
+	var mirror_driver=Node3D.new();mirror_driver.name="PlanarReflection";mirror_driver.set_script(load("res://scripts/planar_mirror.gd"));mirror_surface.add_child(mirror_driver)
+	mirror_driver.configure(mirror_surface,player.camera,room.get_node("IndoorEnvironment").environment)
 	_build_ui()
 	set_loop(1)
 	loading_ok = true
@@ -239,3 +247,6 @@ func show_message(text: String) -> void:
 
 func _update_status() -> void:
 	if status: status.text = "第七日 · 等待室 | Loop %d | 当前通道：%s" % [current_loop,gateway_target]
+
+
+
