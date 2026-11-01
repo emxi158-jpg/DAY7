@@ -1,6 +1,6 @@
 [gd_scene format=4]
 
-[ext_resource type="Shader" path="res://assets/materials/locker_enamel_response.gdshader" id="1_63f7v"]
+[ext_resource type="Shader" path="res://assets/materials/locker_enamel_normal_corrected.gdshader" id="1_63f7v"]
 [ext_resource type="Texture2D" path="res://assets/materials/metal_color.png" id="1_oug8s"]
 [ext_resource type="Texture2D" path="res://assets/materials/metal_coating_20261025/Metal028_2K-JPG_Roughness.jpg" id="2_rwj1j"]
 [ext_resource type="Texture2D" path="res://assets/materials/metal_normal.png" id="2_y8waw"]
@@ -2480,3 +2480,4 @@ transform = Transform3D(0.7592737, 0, -0.65077144, 0, 1, 0, 0.65077144, 0, 0.759
 material_override = SubResource("StandardMaterial3D_1lqfm")
 gi_mode = 2
 mesh = SubResource("ArrayMesh_v6jw8")
+

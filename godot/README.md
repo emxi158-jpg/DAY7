@@ -1,23 +1,8 @@
-# 第七日 · 等待室（Godot 整景）
+# 第七日 · 等待室
 
-使用 **Godot 4.6、Forward+** 打开本目录的 `project.godot`，首次导入完成后按 F6 运行 `main.tscn`，或按 F5 运行项目。
+当前场景阶段交付日期：2026-11-01。[交付说明](../docs/场景阶段交付_20261101.md)。
 
-本轮直接在 Godot 完成修改，没有打开或覆盖 Blender 工程。当前画面来自游戏引擎实机运行。
-
-## 已应用
-
-- 光影修订：54 个原家具网格新增光照 UV；顶灯改为沿灯管展开的柔和照明，墙面暖光、克制的出口冷光和少量反射补光重新平衡。高质量六次反射烘焙共 325 个静态表面，主顶灯与壁灯保留动态阴影。
-- 移除重复云状墙面斑纹和粗大折线裂缝，保留细灰泥与漆面纹理；压暗顶角条与踢脚线。
-- 168 块旧陶瓷地砖改为真实细倒角网格，砖面使用完整 UV；四套程序化釉面磨损、细划痕、粗糙度和法线贴图，砖缝下层距砖面约 3 毫米。
-- 顶灯、暖色小壁灯、出口冷光与绿色灯牌照明；灯管及灯泡有可见发光表面。
-- 使用 Godot 自带 LightmapGI 烘焙建筑间接光，配合实时阴影、室内反射探针、SSAO、AgX 和轻微泛光。
-- 挂钟使用独立 Godot 部件重建：米白色哑光表盘、厚金属侧壳、滚边与压圈、浅弧玻璃、中心轴和壳体螺钉。米白底色在暖壁灯下自然变暖；大号数字可读，时针与分针分离，Loop 4 使用同款资源放大。
-- 小壁灯改为短弯臂、开口金属灯罩与独立灯泡，钟面保留可读性。
-- 公告板左移，六张公告改为纸面印刷材质，纸张紧贴软木；关键便签贴在维护记录上，手写初始文字为 `17:3`。
-- 主柜尺寸约 1.05 米宽、2.21 米高、0.67 米深，移回墙边；保留可开柜门、可拆把手、柜内镜面和真实通道。旁边新增同类旧灰绿色金属衣柜，包含独立柜门、百叶通风口、挂衣杆、衣物、隔板和号码牌。
-- 饮水机重做圆润的旧米白外壳、独立双水嘴、接水凹槽与格栅盘、检修门和底脚；蓝色桶壁、水位与加强筋分别建模。
-- 天花双管灯使用完整金属灯盘、反射罩、灯座、端盖、启辉器和螺钉；停用重叠旧灯具，并降低裸灯管和壁灯灯泡的刺眼发光。
-- 前方空闲区域缩短约两米；原家具主体摆放保留。原始污渍在 glTF 中丢失透明蒙版产生的黑斑已清理，墙面由引擎 PBR 材质保留细微脏污。
+用 **Godot 4.6 / Forward+** 导入本目录的 `project.godot`，等待资源导入完成后按 **F5** 运行完整项目。
 
 ## 操作
 
@@ -25,7 +10,7 @@
 | --- | --- |
 | 移动、观察 | WASD、鼠标 |
 | 交互 | E |
-| 挂钟 | E 打开面板，选择时针或分针后直接输入数值 |
+| 挂钟 | E 打开面板，选择时针或分针后输入数值 |
 | 切换验证用 Loop | 1–4 |
 | Loop 3 砸坏龙头 | Shift+E |
 | 放下柜门把手 | G |
@@ -33,35 +18,23 @@
 | 回到等待室 | R |
 | 释放鼠标、关闭钟针面板 | Esc |
 
-Loop 2 先使用指针装置选择镜面或出口，再打开对应门进入。Loop 4 在关键便签处按 E，依次显示 `17:3`、`17:30`、`18:40`。
-
 ## 编辑位置
 
-| 内容 | 位置 |
-| --- | --- |
-| 游戏主场景与交互入口 | `main.tscn`、`scripts/world.gd` |
-| 建筑、原家具、灯光、反射、间接光 | `room_decor.scn`，可直接在 Godot 编辑器打开 |
-| 独立饮水机与相邻衣柜分组 | `Architecture/WaterDispenser`、`Architecture/AdjacentWardrobe` |
-| 新双管灯与地砖分组 | `Architecture/CeilingFluorescent`、`Architecture/OldTileFloor` |
-| 独立挂钟、柜体、水池、出口、指针、公告板 | `assets/finished/` |
-| 命名后的独立网格 | `assets/geometry/` |
-| 表面材质图 | `assets/materials/` |
-| 烘焙光照 | `baked/` |
-| 引擎实机预览 | `previews/` |
-| 交互与样式验证 | `tests/` |
+建筑、家具、灯光位于 `room_decor.scn`；交互资产位于 `assets/finished/`；游戏逻辑位于 `scripts/`。
 
-调整静态墙面、地板或灯位后，应在编辑器打开 `room_decor.scn`，选中 `BakedIndirectLight`，重新烘焙光照。移动时针、开柜门等动态交互不要求重新烘焙。
+- 墙色：`assets/materials/user_wall_20261029/Plaster.tres`。
+- 环境：IndoorEnvironment，曝光 0.27、环境光能量 1.0。
+- 小射灯：Lighting / ClockSconce_Warm，强度 4.8。
+- 管线：Architecture / ElectricalServices_CleanRouting。
+- 柜体受光修正：`assets/materials/locker_enamel_normal_corrected.gdshader`。
 
-若重新生成资产，顺序为：`make_refined_surfaces.py` / `refine_room.gd` 处理几何，`make_wall_surfaces.py` / `relight_room.gd` 应用新墙面与照明，最后再烘焙。仅运行旧几何生成器会恢复它内置的早期灯光；`tests/verify_lighting.gd` 会检查新照明与动态阴影是否仍存在。固定挂钟使用 `tools/clock_contact.gd` 的平滑贴墙接触阴影近似，避免实时阴影贴图在薄表壳上产生锯齿。
+## 当前检查
 
-照明方式参照 [Godot 4.6 LightmapGI](https://docs.godotengine.org/en/4.6/tutorials/3d/global_illumination/using_lightmap_gi.html) 的静态/动态混合工作方式；没有把静态烘焙误当成所有移动物体的实时投影。
+在项目路径下，用 Godot 的无窗口模式运行：
 
-## 验证与范围
+```
+godot --headless --path . --script res://tests/verify_assets.gd
+godot --headless --path . --script res://tests/verify_three_sources.gd
+```
 
-已验证独立钟针、钟针选择面板、柜门开合、真实玩家胶囊体穿过柜内镜面、把手脱落与拿取、龙头损坏与流水、出口通行、七个重复房间，以及同一张便签的三种文本状态。
-
-这轮重点是光影和墙面斑块，并保留此前地板、天花灯、米白表盘挂钟、饮水机和双柜布局；已重新烘焙并检查实际 GPU 画面。入口门与开关细修、EXIT 图形标识的最终美术版、更细的局部磨损，以及进一步降低原家具面数，仍属于后续完善项。当前性能验证只针对本机，不代表最低配置设备。
-
-烘焙完成与实机退出时，Godot 4.6 在本机报告少量 Texture RID 释放警告；运行过程中未发现脚本错误。资源释放警告尚未定位为项目或引擎侧原因，不将其标记为已修复。
-
-钟面使用 Barlow Condensed Bold，便签使用 Kalam，字体许可证随资源保留。中文沿用项目的 Noto Sans SC。
+其余较早的制作对照记录应结合对应阶段的文档使用。

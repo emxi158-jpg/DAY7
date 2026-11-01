@@ -1,0 +1,11 @@
+{
+  "active_sources": [
+    "ClockSconce_Warm",
+    "EntranceWindow_WarmTransmission",
+    "ExitWindow_CoolTransmission"
+  ],
+  "ambient": 1.0,
+  "baked_users": 316,
+  "closer_connected_open_and_closed": true,
+  "fixed_exposure": 0.270000010728836
+}

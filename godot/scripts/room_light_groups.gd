@@ -1,10 +1,6 @@
 extends RefCounted
 # Exactly three practical sources: clock lamp, warm entrance glass, cool exit glass.
 static func apply(world:Node3D)->void:
- var foot=world.get_node("RoomDecor/Architecture/FurnitureAndShell/Conduit_wall_foot_008")
- var foot_box=foot.global_transform*foot.mesh.get_aabb();var extension=3.852-foot_box.end.x
- foot.scale.x*=(foot_box.size.x+extension)/foot_box.size.x
- var extended=foot.global_transform*foot.mesh.get_aabb();foot.global_position.x+=foot_box.position.x-extended.position.x
  var model=world.actors.exit.model
  var glass=model.find_child("ExitDoor_Glass",true,false)
  var leaf=model.find_child("ExitDoor_Leaf",true,false)
@@ -67,5 +63,6 @@ void fragment(){
  print("THREE_PRACTICAL_SOURCES_READY: ClockSconce_Warm, EntranceWindow_WarmTransmission, ExitWindow_CoolTransmission; no fill lights")
 static func set_surface_lighting(world:Node,cold_enabled:bool,sign_enabled:bool)->void:
  var groups=world.get_meta("exit_light_groups");groups.cold.visible=cold_enabled;groups.sign.visible=sign_enabled
+
 
 
